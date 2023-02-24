@@ -14981,7 +14981,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var modals = function modals() {
-  var closeModal = function closeModal(selec, disp, overfl) {
+  var openCloseModal = function openCloseModal(selec, disp, overfl) {
     selec.style.display = disp;
     document.body.style.overflow = overfl;
   };
@@ -14996,27 +14996,27 @@ var modals = function modals() {
           e.preventDefault();
         }
 
-        closeModal(modal, "block", "hidden");
+        openCloseModal(modal, "block", "hidden");
       });
     });
     close.addEventListener('click', function () {
-      closeModal(modal, "none", "");
+      openCloseModal(modal, "none", "");
     });
     modal.addEventListener('click', function (e) {
       if (e.target === modal) {
-        closeModal(modal, "none", "");
+        openCloseModal(modal, "none", "");
       }
     });
     addEventListener("keydown", function (e) {
       if (e.keyCode === 27) {
-        closeModal(modal, "none", "");
+        openCloseModal(modal, "none", "");
       }
     });
   };
 
   var showModalByTime = function showModalByTime(selector, time) {
     setTimeout(function () {
-      closeModal(document.querySelector(selector), "block", "hidden");
+      openCloseModal(document.querySelector(selector), "block", "hidden");
     }, time);
   };
 

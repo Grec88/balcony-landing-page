@@ -1,9 +1,10 @@
 const modals = () => {
 
-    const closeModal = (selec, disp, overfl) => {
+    const openCloseModal = (selec, disp, overfl) => {
         selec.style.display = disp;
         document.body.style.overflow = overfl;
-    }
+    };
+    
 
     const bindModal = (triggersSelector, modalSelector, closeSelector) => {
         const triggers = document.querySelectorAll(triggersSelector);
@@ -15,30 +16,30 @@ const modals = () => {
                 if (e.target) {
                     e.preventDefault();
                 }
-                closeModal(modal, "block", "hidden");
+                openCloseModal(modal, "block", "hidden");
             });
         });
 
         close.addEventListener('click', () => {
-            closeModal(modal, "none", "");
+            openCloseModal(modal, "none", "");
         });
 
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
-                closeModal(modal, "none", "");
+                openCloseModal(modal, "none", "");
             }
         });
 
         addEventListener("keydown", (e) => {
             if (e.keyCode === 27) {
-                closeModal(modal, "none", "");
+                openCloseModal(modal, "none", "");
             }
         });
     }
 
     const showModalByTime = (selector, time) => {
         setTimeout(() => {
-            closeModal(document.querySelector(selector), "block", "hidden");
+            openCloseModal(document.querySelector(selector), "block", "hidden");
         }, time);
     }
 
