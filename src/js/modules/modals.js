@@ -31,7 +31,7 @@ const modals = () => {
         });
 
         addEventListener("keydown", (e) => {
-            if (e.keyCode === 27) {
+            if (e.code === "Escape") {
                 openCloseModal(modal, "none", "");
             }
         });
