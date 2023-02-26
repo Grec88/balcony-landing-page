@@ -26,7 +26,7 @@ export const form = () => {
 
     const clearInputs = () => {
         inputs.forEach(input => {
-            const value = input.value;
+            let value = input.value;
             console.log({value});
             input.value = "";
         })
