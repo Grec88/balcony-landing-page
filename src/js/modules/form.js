@@ -17,7 +17,7 @@ export const form = () => {
 
     const postData = async (url, data) =>{
         document.querySelector('.status').textContent = message.loading;
-        let res = await fetch(url, {
+        const res = await fetch(url, {
             method: "POST",
             body: data
         });
@@ -26,7 +26,8 @@ export const form = () => {
 
     const clearInputs = () => {
         inputs.forEach(input => {
-            console.log(input.value);
+            const value = input.value;
+            console.log({value});
             input.value = "";
         })
     }
@@ -35,7 +36,7 @@ export const form = () => {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            let statusMessage = document.createElement('div');
+            const statusMessage = document.createElement('div');
             statusMessage.classList.add('status');
             form.appendChild(statusMessage);
 
@@ -45,7 +46,7 @@ export const form = () => {
 
             postData(url, formData)
                 .then(res => {
-                    console.log(res);
+                    console.log({res});
                     statusMessage.textContent = message.success;
                 })
                 .catch(() => statusMessage.textContent = message.failure)

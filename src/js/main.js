@@ -18,5 +18,3 @@ window.addEventListener('DOMContentLoaded' , () => {
     });
     form();
 })
-
-console.log(1);
