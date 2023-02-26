@@ -1,7 +1,7 @@
-const tabs = (tabObject) => {
-    const header = document.querySelector(tabObject.headerSelector);
-    const tabs = document.querySelectorAll(tabObject.tabSelector);
-    const contents = document.querySelectorAll(tabObject.contentSelector);
+export const tabs = ({headerSelector, tabSelector, contentSelector, activeClass}) => {
+    const header = document.querySelector(headerSelector);
+    const tabs = document.querySelectorAll(tabSelector);
+    const contents = document.querySelectorAll(contentSelector);
 
     const hideTabContent = () => {
         contents.forEach(content => {
@@ -9,13 +9,13 @@ const tabs = (tabObject) => {
         });
 
         tabs.forEach(tab => {
-            tab.classList.remove(tabObject.activeClass);
+            tab.classList.remove(activeClass);
         })
     };
 
     const showTabContent = (i = 0) => {
         contents[i].style.display = 'block';
-        tabs[i].classList.add(tabObject.activeClass);
+        tabs[i].classList.add(activeClass);
     };
 
     hideTabContent();
@@ -23,8 +23,8 @@ const tabs = (tabObject) => {
 
     const toggleTab = (target) => {
         if (target &&
-            (target.classList.contains(tabObject.tabSelector.replace(/\./, ""))
-            || target.parentNode.classList.contains(tabObject.tabSelector.replace(/\./, "")))) {
+            (target.classList.contains(tabSelector.replace(/\./, ""))
+            || target.parentNode.classList.contains(tabSelector.replace(/\./, "")))) {
                 tabs.forEach((tab, i) => {
                     if(target == tab || target.parentNode == tab){
                         hideTabContent();
@@ -48,4 +48,3 @@ const tabs = (tabObject) => {
 
 };
 
-export {tabs};

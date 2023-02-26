@@ -1,4 +1,4 @@
-const modals = () => {
+export const modals = () => {
 
     const toggleModal = (selec, disp, overfl) => {
         selec.style.display = disp;
@@ -6,10 +6,10 @@ const modals = () => {
     };
     
 
-    const bindModal = (objectModal) => {
-        const triggers = document.querySelectorAll(objectModal.triggersSelector);
-        const modal = document.querySelector(objectModal.modalSelector); 
-        const close = document.querySelector(objectModal.closeSelector);
+    const bindModal = ({triggersSelector, modalSelector, closeSelector}) => {
+        const triggers = document.querySelectorAll(triggersSelector);
+        const modal = document.querySelector(modalSelector); 
+        const close = document.querySelector(closeSelector);
 
         triggers.forEach(trigger => {
             trigger.addEventListener('click', (e) => {
@@ -54,8 +54,6 @@ const modals = () => {
         modalSelector:'.popup', 
         closeSelector:'.popup .popup_close'
     });
-    // showModalByTime('.popup', 60000);
+     showModalByTime('.popup', 60000);
 
 };
-
-export {modals};
