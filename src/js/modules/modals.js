@@ -1,12 +1,12 @@
-const modals = () => {
+export const modals = () => {
 
-    const openCloseModal = (selec, disp, overfl) => {
+    const toggleModal = (selec, disp, overfl) => {
         selec.style.display = disp;
         document.body.style.overflow = overfl;
     };
     
 
-    const bindModal = (triggersSelector, modalSelector, closeSelector) => {
+    const bindModal = ({triggersSelector, modalSelector, closeSelector}) => {
         const triggers = document.querySelectorAll(triggersSelector);
         const modal = document.querySelector(modalSelector); 
         const close = document.querySelector(closeSelector);
@@ -16,38 +16,44 @@ const modals = () => {
                 if (e.target) {
                     e.preventDefault();
                 }
-                openCloseModal(modal, "block", "hidden");
+                toggleModal(modal, "block", "hidden");
             });
         });
 
         close.addEventListener('click', () => {
-            openCloseModal(modal, "none", "");
+            toggleModal(modal, "none", "");
         });
 
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
-                openCloseModal(modal, "none", "");
+                toggleModal(modal, "none", "");
             }
         });
 
         addEventListener("keydown", (e) => {
             if (e.code === "Escape") {
-                openCloseModal(modal, "none", "");
+                toggleModal(modal, "none", "");
             }
         });
     }
 
     const showModalByTime = (selector, time) => {
         setTimeout(() => {
-            openCloseModal(document.querySelector(selector), "block", "hidden");
+            toggleModal(document.querySelector(selector), "block", "hidden");
         }, time);
     }
 
 
-    bindModal('.popup_engineer_btn', '.popup_engineer', '.popup_engineer .popup_close');
-    bindModal('.phone_link', '.popup', '.popup .popup_close');
-    showModalByTime('.popup', 3000);
+    bindModal({
+        triggersSelector:'.popup_engineer_btn',
+        modalSelector:'.popup_engineer', 
+        closeSelector:'.popup_engineer .popup_close'
+    });
+    bindModal({
+        triggersSelector:'.phone_link', 
+        modalSelector:'.popup', 
+        closeSelector:'.popup .popup_close'
+    });
+     showModalByTime('.popup', 60000);
 
 };
-
-export default modals;
