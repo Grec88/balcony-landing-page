@@ -41,7 +41,9 @@ export const form = () => {
 
             const formData = new FormData(form);
 
-            postData('assets/server.php', formData)
+            const url = 'https://randomuser.me/api';
+
+            postData(url, formData)
                 .then(res => {
                     console.log(res);
                     statusMessage.textContent = message.success;
