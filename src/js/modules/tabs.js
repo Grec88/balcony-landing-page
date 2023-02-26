@@ -1,7 +1,7 @@
-const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
-    const header = document.querySelector(headerSelector);
-    const tabs = document.querySelectorAll(tabSelector);
-    const contents = document.querySelectorAll(contentSelector);
+const tabs = (tabObject) => {
+    const header = document.querySelector(tabObject.headerSelector);
+    const tabs = document.querySelectorAll(tabObject.tabSelector);
+    const contents = document.querySelectorAll(tabObject.contentSelector);
 
     const hideTabContent = () => {
         contents.forEach(content => {
@@ -9,23 +9,22 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
         });
 
         tabs.forEach(tab => {
-            tab.classList.remove(activeClass);
+            tab.classList.remove(tabObject.activeClass);
         })
     };
 
     const showTabContent = (i = 0) => {
         contents[i].style.display = 'block';
-        tabs[i].classList.add(activeClass);
+        tabs[i].classList.add(tabObject.activeClass);
     };
 
     hideTabContent();
     showTabContent();
 
-    header.addEventListener('click', (e) => {
-        const target = e.target;
+    const toggleTab = (target) => {
         if (target &&
-            (target.classList.contains(tabSelector.replace(/\./, ""))
-            || target.parentNode.classList.contains(tabSelector.replace(/\./, "")))) {
+            (target.classList.contains(tabObject.tabSelector.replace(/\./, ""))
+            || target.parentNode.classList.contains(tabObject.tabSelector.replace(/\./, "")))) {
                 tabs.forEach((tab, i) => {
                     if(target == tab || target.parentNode == tab){
                         hideTabContent();
@@ -33,7 +32,20 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
                     };
                 });
         }
+    }
+
+    header.addEventListener('click', (e) => {
+        const target = e.target;
+        toggleTab(target);
     });
+
+    header.addEventListener('keydown', (e) => {
+        const target = e.target;
+        if (e.code === "Enter"){
+            toggleTab(target);
+        } 
+    });
+
 };
 
-export default tabs;
+export {tabs};
