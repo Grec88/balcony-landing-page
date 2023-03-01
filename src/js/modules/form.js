@@ -1,13 +1,10 @@
-export const form = () => {
+import {checkNumInputs} from './checkNumInputs';
+
+export const form = (state) => {
     const forms =  document.querySelectorAll('form');
     const inputs = document.querySelectorAll('input');
-    const phoneInputs = document.querySelectorAll('input[name="user_phone"]');
 
-    phoneInputs.forEach(phoneInput => {
-        phoneInput.addEventListener('input', () => {
-            phoneInput.value = phoneInput.value.replace(/\D/, '');
-        })
-    })
+    checkNumInputs('input[name="user_phone"]');
 
     const message = {
         loading: 'Загрузка', 
@@ -26,8 +23,6 @@ export const form = () => {
 
     const clearInputs = () => {
         inputs.forEach(input => {
-            let value = input.value;
-            console.log({value});
             input.value = "";
         })
     }
@@ -41,6 +36,13 @@ export const form = () => {
             form.appendChild(statusMessage);
 
             const formData = new FormData(form);
+
+            if(form.getAttribute('data-calc') === "end"){
+                for(let key in state){
+                    formData.append(key, state[key]);
+                }
+            }
+            console.log(Array.from(formData));
 
             const url = 'https://randomuser.me/api';
 
