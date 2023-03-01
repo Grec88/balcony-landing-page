@@ -1,11 +1,11 @@
-import {checkNumInputs} from './checkNumInputs';
+import { checkNumInputs } from './checkNumInputs';
 
 export const changeModalState = (state) => {
     const windowForms = document.querySelectorAll('.balcon_icons_img');
     const windowWidth = document.querySelectorAll('#width');
     const windowLength = document.querySelectorAll('#height');
     const windowType = document.querySelectorAll("#view_type");
-    const windowProfile = document.querySelectorAll('.checkbox');
+    const windowProfile = document.querySelectorAll('.radio');
 
     checkNumInputs('#width');
     checkNumInputs('#height');
@@ -13,28 +13,11 @@ export const changeModalState = (state) => {
     const bindActionToElems = (event, elems, prop) => {
         elems.forEach((elem, i) => {
             elem.addEventListener(event, () => {
-                switch(elem.nodeName){
-                    case 'SPAN':
-                        state[prop] = i;
-                        console.log('span');
-                        break;
-                    case 'INPUT' :
-                        if(elem.getAttribute('type') === 'checkbox'){
-                            i === 0 ? state[prop] = 'cold' : state[prop] = 'warm';
-                            elems.forEach((box, j) => {
-                                box.checked = false;
-                                if(i == j){
-                                    box.checked = true;
-                                }
-                            });
-                        }    
-                        else{
-                            state[prop] = elem.value;
-                        }
-                        break;
-                    case 'SELECT' :
-                        state[prop] = elem.value;
-                        break;   
+                if (elem.nodeName === 'SPAN') {
+                    state[prop] = i;
+                }
+                else {
+                    state[prop] = elem.value;
                 }
                 console.log(state);
             });
