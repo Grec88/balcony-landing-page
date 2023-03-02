@@ -10,19 +10,13 @@ export const timer = (id, deadline) => {
     };
 
     const getTimeRemaining = (endtime) => {
-        const t = Date.parse(endtime) - Date.parse(new Date());
+        const total = Date.parse(endtime) - Date.parse(new Date());
         const seconds = Math.floor((t / 1000) % 60);
         const minutes = Math.floor(((t / 1000) / 60) % 60);
         const hours = Math.floor(((t / 1000) / 3600) % 24);
         const days = Math.floor((t / 1000) / 86400);
 
-        return {
-            'total': t,
-            'days': days,
-            'hours': hours,
-            'minutes': minutes,
-            'seconds': seconds
-        };
+        return { total, days, hours, minutes, seconds};
     };
     const setClock = (selector, endtime) => {
         const timer = document.querySelector(selector);
