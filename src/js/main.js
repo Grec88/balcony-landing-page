@@ -1,5 +1,5 @@
 import './slider';
-import { modals, tabs, form, changeModalState, timer} from "./modules";
+import { modals, tabs, form, changeModalState, timer, images} from "./modules";
 
 
 window.addEventListener('DOMContentLoaded' , () => {
@@ -33,5 +33,7 @@ window.addEventListener('DOMContentLoaded' , () => {
     form(modalState);
 
     timer('.container1', deadline);
+
+    images();
     
 })
