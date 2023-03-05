@@ -1,5 +1,18 @@
 export const modals = () => {
 
+    const calcScroll = () => {
+        const div = document.createElement('div');
+
+        div.style.width = '50px';
+        div.style.height = '50px';
+        div.style.overflowY = 'scroll';
+        div.style.visibility = 'hidden';
+
+        document.body.appendChild(div);
+        return div.offsetWidth - div.clientWidth;
+
+    }
+
     const toggleModal = (selec, disp, overfl) => {
         selec.style.display = disp;
         document.body.style.overflow = overfl;
@@ -11,17 +24,20 @@ export const modals = () => {
         const modal = document.querySelector(modalSelector); 
         const close = document.querySelector(closeSelector);
         const windows = document.querySelectorAll(['data-modal']);
-
-        windows.forEach(window => {
-            window.style.display = "none";
-        });
+        const scroll = calcScroll();
 
         triggers.forEach(trigger => {
             trigger.addEventListener('click', (e) => {
                 if (e.target) {
                     e.preventDefault();
                 }
+
+                windows.forEach(window => {
+                    window.style.display = "none";
+                });
+
                 toggleModal(modal, "block", "hidden");
+                document.body.style.marginRight = `${scroll}px`;
             });
         });
 
@@ -31,6 +47,7 @@ export const modals = () => {
             });
             
             toggleModal(modal, "none", "");
+            document.body.style.marginRight = `0px`;
         });
 
         modal.addEventListener('click', (e) => {
@@ -39,12 +56,14 @@ export const modals = () => {
                     window.style.display = "none";
                 });
                 toggleModal(modal, "none", "");
+                document.body.style.marginRight = `0px`;
             }
         });
 
         addEventListener("keydown", (e) => {
             if (e.code === "Escape") {
                 toggleModal(modal, "none", "");
+                document.body.style.marginRight = `0px`;
             }
         });
     }
