@@ -20,7 +20,7 @@ gulp.task("build-ts", () => {
                     output: {
                         filename: 'script.js'
                     },
-                    watch: true,
+                    watch: false,
                     devtool: "source-map",
                     module: {
                         rules: [
