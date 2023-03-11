@@ -13,13 +13,20 @@ export const modals = (): void => {
 
     }
 
-    const toggleModal = (selec: any, disp: string, overfl: string): void => {
+    const toggleModal = (selec: HTMLElement, disp: string, overfl: string): void => {
         selec.style.display = disp;
         document.body.style.overflow = overfl;
     };
 
+    interface IBindModal {
+        triggersSelector: string,
+        modalSelector: string,
+        closeSelector: string,
+        closeClickOverlay?: boolean
+      }
 
-    const bindModal = (modalWin: { triggersSelector: string, modalSelector: string, closeSelector: string, closeClickOverlay?: boolean }): void => {
+
+    const bindModal = (modalWin: IBindModal): void => {
         const triggers: NodeListOf<HTMLElement> = document.querySelectorAll(modalWin.triggersSelector);
         const modal: HTMLElement = document.querySelector(modalWin.modalSelector);
         const close: HTMLElement = document.querySelector(modalWin.closeSelector);

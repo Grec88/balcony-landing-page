@@ -1,6 +1,10 @@
 import { checkNumInputs } from './checkNumInputs';
 
-export const changeModalState = (state:any) => {
+export interface State {
+    [index: string | number]: string | number,
+};
+
+export const changeModalState = (state: State) => {
     const windowForms:NodeListOf<HTMLInputElement> = document.querySelectorAll('.balcon_icons_img');
     const windowWidth:NodeListOf<HTMLInputElement> = document.querySelectorAll('#width');
     const windowLength:NodeListOf<HTMLInputElement> = document.querySelectorAll('#height');
