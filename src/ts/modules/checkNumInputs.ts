@@ -1,5 +1,5 @@
-export const checkNumInputs = (selector) => {
-    const numInputs = document.querySelectorAll(selector);
+export const checkNumInputs = (selector:string):void => {
+    const numInputs: NodeListOf<HTMLInputElement> = document.querySelectorAll(selector);
 
     numInputs.forEach(numInput => {
         numInput.addEventListener('input', () => {

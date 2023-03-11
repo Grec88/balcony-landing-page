@@ -1,16 +1,20 @@
 import { checkNumInputs } from './checkNumInputs';
 
-export const changeModalState = (state) => {
-    const windowForms = document.querySelectorAll('.balcon_icons_img');
-    const windowWidth = document.querySelectorAll('#width');
-    const windowLength = document.querySelectorAll('#height');
-    const windowType = document.querySelectorAll("#view_type");
-    const windowProfile = document.querySelectorAll('.radio');
+export interface State {
+    [index: string | number]: string | number,
+};
+
+export const changeModalState = (state: State) => {
+    const windowForms:NodeListOf<HTMLInputElement> = document.querySelectorAll('.balcon_icons_img');
+    const windowWidth:NodeListOf<HTMLInputElement> = document.querySelectorAll('#width');
+    const windowLength:NodeListOf<HTMLInputElement> = document.querySelectorAll('#height');
+    const windowType:NodeListOf<HTMLInputElement> = document.querySelectorAll("#view_type");
+    const windowProfile:NodeListOf<HTMLInputElement> = document.querySelectorAll('.radio');
 
     checkNumInputs('#width');
     checkNumInputs('#height');
 
-    const bindActionToElems = (event, elems, prop) => {
+    const bindActionToElems = (event:string, elems:NodeListOf<HTMLInputElement>, prop:string) => {
         elems.forEach((elem, i) => {
             elem.addEventListener(event, () => {
                 if (elem.nodeName === 'SPAN') {
