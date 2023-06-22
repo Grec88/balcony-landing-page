@@ -25,12 +25,10 @@ To deploy the landing page to Netlify, follow these steps:
 
 The landing page is built using:
 
-- **Native JavaScript**: no frameworks or libraries were used for the JavaScript code
+- **JavaScript**: the main programming language for the web
+- **Typescript**: a superset of JavaScript that adds static typing and other features 
 - **Webpack**: a module bundler and a build tool for JavaScript projects
 - **Gulp**: a task runner and a build tool for web development
-- **Tailwind CSS**: a utility-first CSS framework for rapid UI development
-- **React Icons**: a library for using popular icons in React projects
-- **React Scroll**: a library for smooth scrolling and scrollspy in React projects
 
 ## Credits
 
