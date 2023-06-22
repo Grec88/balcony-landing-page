@@ -1,4 +1,4 @@
-# Balcony Landing Page
+## [Balcony Landing Page](https://balcony2.netlify.app/)
 
 This is a landing page for Balcony, a web app that allows you to create and share interactive 3D scenes using your browser. The landing page showcases some of the features and benefits of using Balcony, as well as some examples of scenes created by users.
 
